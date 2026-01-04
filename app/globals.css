@@ -36,6 +36,10 @@ body {
   background: white;
   padding: 12px 20px;
   border-bottom: 3px solid #ffd1e6;
+
+  /* 🔑 CRITICAL FIX */
+  position: relative;
+  z-index: 1000;
 }
 
 /* Empty spacer (balances login button) */
@@ -80,6 +84,11 @@ body {
   border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
+
+  /* 🔑 CRITICAL FIX */
+  position: relative;
+  z-index: 2000;
+  pointer-events: auto;
 }
 
 .fb-login-btn:hover {

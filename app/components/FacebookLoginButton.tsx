@@ -20,18 +20,30 @@ export default function FacebookLoginButton() {
     script.crossOrigin = "anonymous";
 
     script.onload = () => {
+      if (!process.env.NEXT_PUBLIC_FACEBOOK_APP_ID) {
+        console.error("Facebook App ID missing");
+        return;
+      }
+
       window.FB.init({
-        appId: "940451454977117",
+        appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
         cookie: true,
         xfbml: false,
         version: "v19.0",
       });
+
+      console.log("Facebook SDK initialized");
     };
 
     document.body.appendChild(script);
   }, []);
 
   const login = () => {
+    if (!window.FB) {
+      console.error("FB SDK not loaded");
+      return;
+    }
+
     window.FB.login(
       (response: any) => {
         if (response.authResponse) {
