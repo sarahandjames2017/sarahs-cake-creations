@@ -1,0 +1,125 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff3e6;
+    color: #6a4f4b;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(90deg, #ff9a8b, #fad0c4, #fcb69f);
+    padding: 30px;
+    color: white;
+    position: relative;
+}
+
+header img {
+    width: 180px;
+}
+
+#menu-toggle {
+    display: none;
+    background-color: #ffd6cc;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+/* Nav Menu */
+nav {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #6a4f4b;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 1px solid #ff9a8b;
+    border-radius: 5px;
+    background-color: #ffd6cc;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #ffb6a9;
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+    padding: 50px 20px;
+}
+
+.hero img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Gallery Styles */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ffe4d6;
+    color: #6a4f4b;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+    nav {
+        display: none;
+        flex-direction: column;
+        background-color: #ffd6cc;
+        padding: 10px;
+    }
+    nav.show {
+        display: flex;
+    }
+    nav a {
+        padding: 15px;
+        font-size: 20px;
+        border: none;
+        border-bottom: 1px solid #ff9a8b;
+    }
+    nav a:last-child {
+        border-bottom: none;
+    }
+    /* Hide the nav menu by default on smaller screens */
+#nav-menu {
+    display: none;
+}
+
+/* Show the menu when the class is toggled */
+#nav-menu.show-menu {
+    display: flex;
+    flex-direction: column;
+}
+}
