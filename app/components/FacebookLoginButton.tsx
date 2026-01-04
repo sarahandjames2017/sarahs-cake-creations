@@ -5,28 +5,29 @@ import { useEffect } from "react";
 declare global {
   interface Window {
     FB: any;
+    fbAsyncInit: () => void;
   }
 }
 
 export default function FacebookLoginButton() {
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (window.FB) return;
 
-    const script = document.createElement("script");
-    script.src = "https://connect.facebook.net/en_US/sdk.js";
-    script.async = true;
-    script.defer = true;
-    script.crossOrigin = "anonymous";
-
-    script.onload = () => {
+    window.fbAsyncInit = function () {
       window.FB.init({
-        appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
+        appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID!,
         cookie: true,
         xfbml: false,
         version: "v19.0",
       });
     };
 
+    const script = document.createElement("script");
+    script.src = "https://connect.facebook.net/en_US/sdk.js";
+    script.async = true;
+    script.defer = true;
+    script.crossOrigin = "anonymous";
     document.body.appendChild(script);
   }, []);
 
@@ -37,12 +38,18 @@ export default function FacebookLoginButton() {
     }
 
     window.FB.login(
-      (response: any) => {
-        if (response.authResponse) {
-          console.log("Logged in with Facebook:", response);
-        } else {
-          console.log("Facebook login cancelled");
-        }
+      async (response: any) => {
+        if (!response.authResponse) return;
+
+        await fetch("/api/auth/facebook", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            accessToken: response.authResponse.accessToken,
+          }),
+        });
+
+        window.location.reload();
       },
       { scope: "public_profile,email" }
     );

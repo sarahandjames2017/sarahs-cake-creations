@@ -88,6 +88,11 @@ export default function Home() {
         Custom Cakes for Every Occasion
       </div>
 
+      {/* FACEBOOK LOGIN (ADDED — nothing else changed) */}
+      <div style={{ marginTop: "30px", textAlign: "center" }}>
+        <FacebookLoginButton />
+      </div>
+
       {/* CATEGORIES */}
       <h2 className="section-title">Shop by Category</h2>
 
@@ -142,9 +147,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-
-      
-
     </>
   );
 }
