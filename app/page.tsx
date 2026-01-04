@@ -1,5 +1,7 @@
 "use client";
 
+import FacebookLoginButton from "./components/FacebookLoginButton";
+
 export default function Home() {
   return (
     <>
@@ -140,6 +142,9 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      
+
     </>
   );
 }

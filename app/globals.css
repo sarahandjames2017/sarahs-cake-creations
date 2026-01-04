@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-/* Header */
+/* ================= HEADER ================= */
 .site-header {
   background: #f6f8b8;
   padding: 30px 15px;
@@ -28,14 +28,26 @@ body {
   color: #6b245d;
 }
 
-/* Nav */
+/* ================= NAV ================= */
 .site-nav {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   background: white;
-  padding: 12px 0;
+  padding: 12px 20px;
   border-bottom: 3px solid #ffd1e6;
+}
+
+/* Empty spacer (balances login button) */
+.nav-spacer {
+  height: 1px;
+}
+
+/* Centered menu links */
+.site-nav-links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -52,7 +64,29 @@ body {
   color: #ff4d94;
 }
 
-/* Footer */
+/* ================= LOGIN BUTTON ================= */
+.login-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fb-login-btn {
+  background: #1877f2;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fb-login-btn:hover {
+  background: #145dbf;
+}
+
+/* ================= FOOTER ================= */
 .site-footer {
   background-color: #ffb5ce;
   color: #6b245d;
@@ -61,23 +95,32 @@ body {
   font-weight: bold;
 }
 
-/* Mobile */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
   .site-header {
     padding: 15px 10px;
     gap: 6px;
   }
+
   .site-header img {
     width: 65px;
   }
+
   .site-header h1 {
     font-size: 26px;
   }
-  .site-nav {
+
+  .site-nav-links {
     gap: 14px;
   }
+
   .site-nav a {
     font-size: 16px;
     padding: 4px 6px;
+  }
+
+  .fb-login-btn {
+    font-size: 13px;
+    padding: 6px 10px;
   }
 }

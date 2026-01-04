@@ -1,4 +1,6 @@
 import "./globals.css";
+import FacebookLoginButton from "./components/FacebookLoginButton";
+
 
 export const metadata = {
   title: "Sarah's Cake Creations",
@@ -91,13 +93,27 @@ export default function RootLayout({
           <h1>Sarah&apos;s Cake Creations</h1>
         </header>
 
-        <nav>
-          <a href="/">Home</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/about">About</a>
-          <a href="/reviews">Reviews</a>
-          <a href="/contact">Contact</a>
-        </nav>
+        <nav className="site-nav">
+  <div className="nav-spacer"></div>
+
+  <div className="site-nav-links">
+    <a href="/">Home</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/about">About</a>
+    <a href="/reviews">Reviews</a>
+    <a href="/contact">Contact</a>
+  </div>
+
+  <div className="login-area">
+    <button className="fb-login-btn">
+      Login with Facebook
+    </button>
+  </div>
+</nav>
+
+
+
+
 
         {children}
 
