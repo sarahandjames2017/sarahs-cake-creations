@@ -2,45 +2,76 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
 
+type FacebookSuccess = {
+  id: string;
+  name?: string;
+  email?: string;
+};
+
+type FacebookError = {
+  error: {
+    message: string;
+    type: string;
+    code?: number;
+  };
+};
+
 export async function POST(req: Request) {
-  const { accessToken } = await req.json();
+  console.log("🔥 /api/auth/facebook HIT");
+
+  let accessToken: string | undefined;
+
+  try {
+    const body = await req.json();
+    accessToken = body.accessToken;
+    console.log("📦 accessToken received:", !!accessToken);
+  } catch {
+    return NextResponse.json(
+      { error: "Invalid JSON body" },
+      { status: 400 }
+    );
+  }
+
+  if (!accessToken) {
+    return NextResponse.json(
+      { error: "Missing access token" },
+      { status: 400 }
+    );
+  }
 
   const fbRes = await fetch(
     `https://graph.facebook.com/me?fields=id,name,email&access_token=${accessToken}`
   );
 
-  if (!fbRes.ok) {
+  const fbData = (await fbRes.json()) as FacebookSuccess | FacebookError;
+
+  // 🚨 Facebook can return 200 with an error object
+  if ("error" in fbData) {
+    console.error("❌ Facebook API error:", fbData.error);
     return NextResponse.json(
-      { error: "Facebook request failed" },
+      { error: fbData.error.message },
       { status: 401 }
     );
   }
 
-  const fbUser: {
-    id?: string;
-    name?: string;
-    email?: string;
-  } = await fbRes.json();
-
-  if (!fbUser.id) {
+  if (!fbData.id) {
     return NextResponse.json(
-      { error: "Invalid token" },
+      { error: "Invalid Facebook response" },
       { status: 401 }
     );
   }
 
   let user = await prisma.user.findUnique({
-    where: { facebookId: fbUser.id },
+    where: { facebookId: fbData.id },
   });
 
-  // ✅ FIXED: create user ONLY if not found
   if (!user) {
     user = await prisma.user.create({
       data: {
-        facebookId: fbUser.id,
-        name: fbUser.name ?? "",
-        email: fbUser.email,
-        isAdmin: fbUser.email === "info@sarahscakecreations.co.uk",
+        facebookId: fbData.id,
+        name: fbData.name ?? "",
+        email: fbData.email,
+        isAdmin: fbData.email === "info@sarahscakecreations.co.uk",
       },
     });
   }
@@ -57,6 +88,8 @@ export async function POST(req: Request) {
       path: "/",
     }
   );
+
+  console.log("✅ User logged in:", user.id);
 
   return NextResponse.json({ success: true });
 }
