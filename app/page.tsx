@@ -1,7 +1,5 @@
 "use client";
 
-import FacebookLoginButton from "./components/FacebookLoginButton";
-
 export default function Home() {
   return (
     <>
@@ -86,11 +84,6 @@ export default function Home() {
       {/* HERO */}
       <div className="hero">
         Custom Cakes for Every Occasion
-      </div>
-
-      {/* FACEBOOK LOGIN (ADDED — nothing else changed) */}
-      <div style={{ marginTop: "30px", textAlign: "center" }}>
-        <FacebookLoginButton />
       </div>
 
       {/* CATEGORIES */}

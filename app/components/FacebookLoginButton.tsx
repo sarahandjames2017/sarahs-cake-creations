@@ -14,10 +14,14 @@ export default function FacebookLoginButton() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (window.FB) {
+    // If already loaded
+    if (typeof window !== "undefined" && window.FB) {
       setReady(true);
       return;
     }
+
+    // Prevent adding script twice
+    if (document.getElementById("facebook-jssdk")) return;
 
     window.fbAsyncInit = function () {
       window.FB.init({
@@ -55,10 +59,7 @@ export default function FacebookLoginButton() {
           return;
         }
 
-        console.log(
-          "✅ FB access token:",
-          response.authResponse.accessToken
-        );
+        console.log("✅ FB access token:", response.authResponse.accessToken);
 
         try {
           const res = await fetch("/api/auth/facebook", {
@@ -79,6 +80,7 @@ export default function FacebookLoginButton() {
           }
 
           // ✅ SUCCESS
+          setLoading(false);
           window.location.href = "/";
         } catch (err) {
           console.error("❌ Network error", err);
@@ -90,7 +92,7 @@ export default function FacebookLoginButton() {
   };
 
   return (
-    <button onClick={login} disabled={!ready || loading}>
+    <button className="fb-login-btn" onClick={login} disabled={!ready || loading}>
       {loading ? "Logging in..." : "Login with Facebook"}
     </button>
   );

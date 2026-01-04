@@ -5,7 +5,7 @@ import FacebookLoginButton from "./FacebookLoginButton";
 export default function ClientNav() {
   return (
     <nav className="site-nav">
-      <div className="nav-spacer"></div>
+      <div className="nav-spacer" />
 
       <div className="site-nav-links">
         <a href="/">Home</a>

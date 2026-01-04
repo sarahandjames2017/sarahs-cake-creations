@@ -37,7 +37,7 @@ body {
   padding: 12px 20px;
   border-bottom: 3px solid #ffd1e6;
 
-  /* 🔑 CRITICAL FIX */
+  /* ensures nav stays above hero */
   position: relative;
   z-index: 1000;
 }
@@ -85,7 +85,6 @@ body {
   cursor: pointer;
   white-space: nowrap;
 
-  /* 🔑 CRITICAL FIX */
   position: relative;
   z-index: 2000;
   pointer-events: auto;
