@@ -138,17 +138,17 @@ export async function POST(req: Request) {
   // 4️⃣ Set session cookie ✅ FIXED
   // -------------------------
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies(); // 🔑 REQUIRED FIX
 
     cookieStore.set(
       "session",
       JSON.stringify({ userId: user.id }),
       {
         httpOnly: true,
-        secure: true,                 // REQUIRED on HTTPS
-        sameSite: "none",             // 🔑 REQUIRED for OAuth
+        secure: true, // REQUIRED on HTTPS
+        sameSite: "none", // REQUIRED for OAuth
         path: "/",
-        domain: ".sarahscakecreations.co.uk", // 🔑 REQUIRED
+        domain: ".sarahscakecreations.co.uk",
       }
     );
 
