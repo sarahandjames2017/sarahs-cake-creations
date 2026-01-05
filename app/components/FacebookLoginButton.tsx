@@ -14,13 +14,11 @@ export default function FacebookLoginButton() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // If already loaded
     if (typeof window !== "undefined" && window.FB) {
       setReady(true);
       return;
     }
 
-    // Prevent adding script twice
     if (document.getElementById("facebook-jssdk")) return;
 
     window.fbAsyncInit = function () {
@@ -52,47 +50,50 @@ export default function FacebookLoginButton() {
     setLoading(true);
 
     window.FB.login(
-      async (response: any) => {
+      (response: any) => {
         if (!response.authResponse) {
           console.log("❌ Facebook login cancelled");
           setLoading(false);
           return;
         }
 
-        console.log("✅ FB access token:", response.authResponse.accessToken);
+        // ✅ async work is wrapped safely
+        (async () => {
+          try {
+            const res = await fetch("/api/auth/facebook", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                accessToken: response.authResponse.accessToken,
+              }),
+            });
 
-        try {
-          const res = await fetch("/api/auth/facebook", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              accessToken: response.authResponse.accessToken,
-            }),
-          });
+            const data = await res.json();
 
-          const data = await res.json();
-          console.log("📦 Backend response:", data);
+            if (!res.ok) {
+              alert(data.error || "Login failed");
+              setLoading(false);
+              return;
+            }
 
-          if (!res.ok) {
-            alert(data.error || "Login failed");
+            // ✅ SUCCESS
+            window.location.reload();
+          } catch (err) {
+            console.error("❌ Network error", err);
             setLoading(false);
-            return;
           }
-
-          // ✅ SUCCESS
-          setLoading(false);
-          window.location.href = "/";
-        } catch (err) {
-          console.error("❌ Network error", err);
-          setLoading(false);
-        }
+        })();
       },
       { scope: "email,public_profile" }
     );
   };
 
   return (
-    <button className="fb-login-btn" onClick={login} disabled={!ready || loading}>
+    <button
+      className="fb-login-btn"
+      onClick={login}
+      disabled={!ready || loading}
+    >
       {loading ? "Logging in..." : "Login with Facebook"}
     </button>
   );
