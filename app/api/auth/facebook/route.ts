@@ -1,6 +1,5 @@
 export const runtime = "nodejs";
 
-
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
@@ -81,7 +80,6 @@ export async function POST(req: Request) {
     );
   }
 
-  // 🚨 Facebook can return 200 OK with an error object
   if ("error" in fbData) {
     console.error("❌ Facebook API error:", fbData.error);
     return NextResponse.json(
@@ -137,19 +135,20 @@ export async function POST(req: Request) {
   }
 
   // -------------------------
-  // 4️⃣ Set session cookie
+  // 4️⃣ Set session cookie ✅ FIXED
   // -------------------------
   try {
-    const cookieStore = await cookies();
+    const cookieStore = cookies();
 
     cookieStore.set(
       "session",
       JSON.stringify({ userId: user.id }),
       {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        secure: true,                 // REQUIRED on HTTPS
+        sameSite: "none",             // 🔑 REQUIRED for OAuth
         path: "/",
+        domain: ".sarahscakecreations.co.uk", // 🔑 REQUIRED
       }
     );
 
