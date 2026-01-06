@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -23,11 +25,14 @@ export default function AuthConfirmPage() {
       const next = params.get("next") || "/account";
 
       if (!token_hash || !type) {
-        setMessage("Invalid confirmation link.");
+        setMessage("Invalid or expired confirmation link.");
         return;
       }
 
-      const { error } = await supabase.auth.verifyOtp({ token_hash, type });
+      const { error } = await supabase.auth.verifyOtp({
+        token_hash,
+        type,
+      });
 
       if (error) {
         setMessage(error.message || "Confirmation failed.");
