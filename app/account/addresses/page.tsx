@@ -1,9 +1,31 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import RequireAuth from "@/app/components/RequireAuth";
+import { supabase } from "@/app/lib/supabase";
 
 export default function AddressesPage() {
+  const [name, setName] = useState<string>("");
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const { data } = await supabase.auth.getUser();
+
+      const user = data.user;
+      if (!user) return;
+
+      // ✅ Try common Supabase name fields
+      setName(
+        user.user_metadata?.full_name ||
+        user.user_metadata?.name ||
+        "Customer"
+      );
+    };
+
+    loadUser();
+  }, []);
+
   return (
     <RequireAuth>
       <div className="container" style={{ padding: "80px 0" }}>
@@ -31,7 +53,7 @@ export default function AddressesPage() {
 
         <div style={{ marginTop: 60, textAlign: "center" }}>
           <h3>DEFAULT</h3>
-          <p>James Parr</p>
+          <p>{name}</p>
           <p>United Kingdom</p>
 
           <div style={{ marginTop: 12 }}>
