@@ -56,7 +56,7 @@ export const products: Product[] = [
     image: "biscoff_rockyroad.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "Indulgent, rich, and irresistibly moreish. Our Biscoff Rocky Road is made with smooth, melt-in-the-mouth chocolate, packed with crunchy Biscoff biscuits and soft, fluffy marshmallows, then finished with a generous swirl of creamy Biscoff spread. Every bite delivers the perfect balance of chocolatey richness and that signature caramelised Biscoff flavour. A decadent no-bake treat that’s perfect for sharing… or keeping all to yourself. 🍫✨",
   },
   {
     id: "bakewell-shortbread-slice",
@@ -67,7 +67,7 @@ export const products: Product[] = [
     image: "bakewell_shortbread_slice.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "A classic favourite with a buttery twist. Our Bakewell Shortbread features a melt-in-the-mouth, all-butter shortbread base topped with sweet raspberry jam and finished with a delicate almond layer for that unmistakable Bakewell flavour. Soft, crumbly, and perfectly balanced between fruity and nutty, it’s a timeless treat that pairs beautifully with a cup of tea or coffee. Elegant, comforting, and utterly delicious. 🍓🌰",
   },
   {
     id: "billionaires-brownie",
@@ -78,7 +78,7 @@ export const products: Product[] = [
     image: "billionaires_brownie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "Pure indulgence in every layer. Our Billionaire’s Brownie starts with a rich, fudgy chocolate brownie base, topped with a thick layer of smooth, golden caramel and finished with a generous coating of silky chocolate. Decadent, gooey, and luxuriously sweet, it’s the ultimate treat for chocolate and caramel lovers alike. A show-stopping classic that truly lives up to its name. 🍫✨",
   },
   {
     id: "biscoff-and-chocolate-cookie-pie",
@@ -89,7 +89,7 @@ export const products: Product[] = [
     image: "biscoff_and_chocolate_cookie_pie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "The ultimate indulgence for spread lovers. Our Biscoff & Chocolate Cookie Pie features a thick, soft-baked chocolate chip cookie base, stuffed with crunchy Biscoff biscuits and Nutella biscuits, then layered with rich Nutella spread and creamy Biscoff spread. Baked until golden on the outside and irresistibly gooey in the centre, every slice delivers molten chocolate, nutty hazelnut richness, and that signature caramelised Biscoff flavour. Decadent, comforting, and completely addictive. 🍪🍫✨",
   },
   {
     id: "caramel-cornflake-brownie",
@@ -100,7 +100,7 @@ export const products: Product[] = [
     image: "caramel_cornflake_brownie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "A perfect mix of fudgy and crunchy. Our Caramel Cornflake Brownie starts with a rich, dense chocolate brownie base, topped with a thick layer of smooth, golden caramel and finished with a crunchy cornflake topping coated in chocolate. The result is a delicious contrast of gooey brownie, soft caramel, and crisp cornflakes in every bite. Bold, indulgent, and seriously satisfying — a must-try for brownie lovers. 🍫✨",
   },
   {
     id: "caramel-gingerbread-cookie-bar",
@@ -111,7 +111,7 @@ export const products: Product[] = [
     image: "caramel_gingerbread_cookie_bar.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "Warm, spiced, and irresistibly indulgent. Our Caramel Gingerbread Cookie Bar is made with a soft, chewy gingerbread cookie base infused with comforting spices, layered with rich, buttery caramel for the perfect sweet finish. Each bite delivers a balance of cosy gingerbread flavour and smooth caramel richness, creating a treat that’s both nostalgic and indulgent. Perfect with a hot drink and ideal for gingerbread lovers. 🍪✨",
   },
   {
     id: "cherry-bakewell-cookie-pie",
@@ -122,7 +122,7 @@ export const products: Product[] = [
     image: "cherry_bakewell_cookie_pie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "A classic favourite reimagined. Our Cherry Bakewell Cookie Pie features a thick, soft-baked cookie base with a subtle almond flavour, generously layered with rich, tangy Morello cherry jam and stuffed with pieces of Cherry Bakewell tarts for an extra indulgent twist. Studded with juicy cherries and baked until golden on the outside and irresistibly gooey in the centre, it delivers all the nostalgic Bakewell flavour in a decadent cookie pie form — rich, comforting, and utterly delicious. 🍒✨",
   },
   {
     id: "cookies-and-cream-cookie-pie",
@@ -133,7 +133,7 @@ export const products: Product[] = [
     image: "cookies_and_cream_cookie_pie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "Decadent, thick, and seriously indulgent. Our Cookies & Cream Cookie Pie features a soft-baked chocolate chip cookie shell filled with a creamy cookies-and-cream centre, layered with whole and crushed chocolate sandwich biscuits throughout. Studded with milk chocolate chunks and baked until golden, it’s crisp on the outside and luxuriously gooey inside. Every slice delivers the perfect balance of cookie dough, creamy filling, and chocolate crunch — a true show-stopping dessert. 🍪🤍🍫",
   },
   {
     id: "cornflake-tart",
@@ -144,7 +144,7 @@ export const products: Product[] = [
     image: "cornflake_tart.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "A nostalgic classic done right. Our Cornflake Tart features a crisp, buttery pastry base filled with sweet strawberry jam and topped with golden, crunchy cornflakes coated in rich, sticky syrup. Baked until perfectly golden, it’s the ultimate balance of buttery, fruity, and crunchy textures. A comforting, timeless treat that tastes just like home. ✨🥧",
   },
   {
     id: "cosmic-brownie",
@@ -155,7 +155,7 @@ export const products: Product[] = [
     image: "cosmic_brownie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "Rich, fudgy, and full of fun. Our Cosmic Brownie is made with a dense, chocolatey brownie base, topped with a smooth layer of silky chocolate and finished with a colourful mix of Smarties and M&M’s. Ultra-indulgent, perfectly gooey, and packed with deep chocolate flavour, it’s a playful, nostalgic treat that looks just as good as it tastes. 🍫🌈✨",
   },
   {
     id: "crunchie-brownie",
@@ -166,7 +166,7 @@ export const products: Product[] = [
     image: "crunchie_brownie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "Rich, fudgy, and packed with crunch. Our Crunchie Brownie features a dense, chocolatey brownie base loaded with chunks of Crunchie, melting slightly as it bakes to create pockets of golden honeycomb throughout. Finished with extra Crunchie pieces on top, it delivers the perfect contrast of gooey chocolate and light, crunchy honeycomb in every bite. A must-try for chocolate lovers who love a little crunch. 🍫✨",
   },
   {
     id: "dairymilk-rockyroad",
@@ -177,7 +177,7 @@ export const products: Product[] = [
     image: "dairymilk_rockyroad.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "A chocolate lover’s dream. Our Dairy Milk Rocky Road is made with smooth, creamy Cadbury Dairy Milk chocolate, generously mixed with fluffy marshmallows and crunchy biscuit pieces. Rich, sweet, and perfectly indulgent, each bite delivers that unmistakable Dairy Milk creaminess with a satisfying mix of textures. A classic, crowd-pleasing treat that never disappoints. 🍫✨",
   },
   {
     id: "dubai-brownie",
@@ -188,7 +188,7 @@ export const products: Product[] = [
     image: "dubai_brownie.jpg",
     customOnly: false,
     description:
-      "A rich chocolate rocky road packed with crunchy biscuits, fluffy marshmallows and finished with a generous layer of smooth Biscoff spread.",
+      "A luxurious twist on a chocolate classic. Our Dubai Brownie features an ultra-fudgy chocolate brownie base filled with a rich, creamy pistachio kunafa filling, bringing a beautifully nutty flavour and subtle crunch. It’s topped with a smooth milk chocolate ganache and finished with a generous sprinkle of chopped pistachio pieces. Decadent, indulgent, and inspired by bold Middle Eastern flavours — this brownie is truly next level. 🍫💚✨",
   },
   {
     id: "funfetti-cookie-sandwich",
