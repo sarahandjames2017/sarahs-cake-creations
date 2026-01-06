@@ -1,145 +1,246 @@
-"use client";
+import { products } from "@/data/products";
 
 export default function Home() {
+  // show in-stock first
+  const sorted = [...products].sort((a, b) => {
+    const aInStock = !a.soldOut && a.quantityAvailable > 0;
+    const bInStock = !b.soldOut && b.quantityAvailable > 0;
+    return Number(bInStock) - Number(aInStock);
+  });
+
+  // just show a nice amount on the homepage
+  const featured = sorted.slice(0, 8);
+
   return (
-    <>
-      <style>{`
-        .hero {
-          background-image: url('/images/wedding_cake.jpg');
-          background-size: cover;
-          background-position: center;
-          height: 65vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-weight: 900;
-          font-size: 38px;
-          text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-        }
+    <div>
+      {/* HERO BANNER */}
+      <div
+        style={{
+          position: "relative",
+          height: 420,
+          overflow: "hidden",
+          background: "#fff",
+        }}
+      >
+        <img
+          src="/images/home-banner.png"
+          alt="Sarah's Cake Creations"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
 
-        .section-title {
-          font-size: 32px;
-          margin-top: 40px;
-          color: #6b245d;
-          font-weight: 800;
-          text-align: center;
-        }
+        {/* overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.15))",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 24,
+          }}
+        >
+          <div style={{ textAlign: "center", maxWidth: 900 }}>
+            <h1
+              style={{
+                margin: 0,
+                color: "white",
+                fontWeight: 900,
+                fontSize: 44,
+                letterSpacing: 1,
+                textTransform: "uppercase",
+                textShadow: "0 2px 10px rgba(0,0,0,0.35)",
+              }}
+            >
+              Add any 3–8 slices to your basket to checkout
+            </h1>
 
-        .category-row {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 15px;
-          max-width: 1000px;
-          margin: 25px auto;
-        }
-
-        .category-btn {
-          background: white;
-          border: 2px solid #ff8bb6;
-          border-radius: 12px;
-          padding: 14px 22px;
-          font-size: 17px;
-          font-weight: bold;
-          color: #6b245d;
-          cursor: pointer;
-          transition: 0.25s;
-        }
-
-        .category-btn:hover {
-          background: #ff8bb6;
-          color: white;
-        }
-
-        .slider {
-          overflow: hidden;
-          width: 100%;
-          background-color: #fff;
-          padding: 35px 0;
-          margin-bottom: 40px;
-        }
-
-        .slide-track {
-          display: flex;
-          width: calc(180px * 40);
-          animation: scroll 50s linear infinite;
-        }
-
-        .slide-track img {
-          width: 180px;
-          height: 180px;
-          border-radius: 50%;
-          object-fit: cover;
-          margin: 0 15px;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.18);
-        }
-
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-180px * 20)); }
-        }
-      `}</style>
-
-      {/* HERO */}
-      <div className="hero">
-        Custom Cakes for Every Occasion
-      </div>
-
-      {/* CATEGORIES */}
-      <h2 className="section-title">Shop by Category</h2>
-
-      <div className="category-row">
-        <button className="category-btn" onClick={() => location.href = "/gallery#cakes"}>🎂 Cakes</button>
-        <button className="category-btn" onClick={() => location.href = "/gallery#cake-slices"}>🎂 Cake Slices</button>
-        <button className="category-btn" onClick={() => location.href = "/gallery#cupcakes"}>🧁 Cupcakes</button>
-        <button className="category-btn" onClick={() => location.href = "/gallery#cookies"}>🍪 Cookies</button>
-        <button className="category-btn" onClick={() => location.href = "/gallery#brownies"}>🍫 Brownies</button>
-        <button className="category-btn" onClick={() => location.href = "/gallery#cakepots"}>🍰 Cake Pots</button>
-        <button className="category-btn" onClick={() => location.href = "/gallery#cheesecakes"}>🧀 Cheesecakes</button>
-        <button className="category-btn" onClick={() => location.href = "/gallery#other"}>🍬 Other Treats</button>
-      </div>
-
-      {/* FEATURED */}
-      <h2 className="section-title">Featured Creations</h2>
-
-      <div className="slider">
-        <div className="slide-track">
-          {[
-            "pink_cake.jpg",
-            "wedding_cake.jpg",
-            "newcastle_cake.jpg",
-            "sunderland_themed_cake.jpg",
-            "chocolate_overload_cake.jpg",
-            "minions_themed_cake.jpg",
-            "ghost_spider.png",
-            "dino.png",
-            "stitch_cupcakes.jpg",
-            "peanut_mm_colossal_cookie.jpg",
-            "billionaires_brownie.jpg",
-            "biscoff_and_white_chocolate_cake_pot.jpg",
-          ].map((img, i) => (
-            <img key={i} src={`/images/${img}`} alt="" />
-          ))}
-
-          {[
-            "pink_cake.jpg",
-            "wedding_cake.jpg",
-            "newcastle_cake.jpg",
-            "sunderland_themed_cake.jpg",
-            "chocolate_overload_cake.jpg",
-            "minions_themed_cake.jpg",
-            "ghost_spider.png",
-            "dino.png",
-            "stitch_cupcakes.jpg",
-            "peanut_mm_colossal_cookie.jpg",
-            "billionaires_brownie.jpg",
-            "biscoff_and_white_chocolate_cake_pot.jpg",
-          ].map((img, i) => (
-            <img key={`dup-${i}`} src={`/images/${img}`} alt="" />
-          ))}
+            <div style={{ marginTop: 14 }}>
+              <a
+                href="/products"
+                style={{
+                  display: "inline-block",
+                  background: "#ff7fbf",
+                  color: "white",
+                  fontWeight: 800,
+                  textDecoration: "none",
+                  padding: "12px 22px",
+                  borderRadius: 10,
+                }}
+              >
+                Shop Products →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+
+      {/* INFO SECTION */}
+      <div
+        className="container"
+        style={{ padding: "44px 0", textAlign: "center" }}
+      >
+        <h2
+          style={{
+            margin: 0,
+            fontSize: 28,
+            fontWeight: 900,
+            color: "#6b245d",
+            letterSpacing: 1,
+            textTransform: "uppercase",
+          }}
+        >
+          Nationwide Delivery
+        </h2>
+
+        <p
+          style={{
+            margin: "14px auto 0",
+            maxWidth: 820,
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontSize: 18,
+            fontWeight: 600,
+            lineHeight: 1.8,
+            color: "#6b245d",
+          }}
+        >
+          Website restocked every Tuesday at 18:00 and Saturday at 12:00. The
+          menu changes every restock so follow us on Instagram / Facebook to see
+          what will be available.
+        </p>
+
+        <p
+          style={{
+            margin: "22px auto 0",
+            maxWidth: 820,
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontSize: 18,
+            fontWeight: 600,
+            lineHeight: 1.8,
+            color: "#6b245d",
+          }}
+        >
+          Add any <strong>3–8 slices</strong> to your basket to checkout. If you
+          need to make an address change or add a personalised note to your
+          order, please contact us at{" "}
+          <strong>info@sarahscakecreations.co.uk</strong>.
+        </p>
+      </div>
+
+      {/* PRODUCTS PREVIEW */}
+      <div className="container" style={{ padding: "0 0 60px 0" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: 26,
+            fontWeight: 900,
+            color: "#6b245d",
+            letterSpacing: 1,
+            textTransform: "uppercase",
+            marginBottom: 22,
+          }}
+        >
+          Products
+        </h2>
+
+        <div className="productsGrid">
+          {featured.map((product) => {
+            const isSoldOut =
+              product.soldOut || product.quantityAvailable === 0;
+
+            return (
+              <a
+                key={product.id}
+                href={`/products/${product.id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <div
+                  className="productCard"
+                  style={{
+                    background: "#fff",
+                    border: "1px solid #eee",
+                    borderRadius: 12,
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ position: "relative" }}>
+                    <img
+                      src={`/images/${product.image}`}
+                      alt={product.name}
+                      style={{
+                        width: "100%",
+                        height: 170,
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+
+                    {isSoldOut && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: 10,
+                          left: 10,
+                          background: "#ff4d94",
+                          color: "white",
+                          fontSize: 12,
+                          fontWeight: 900,
+                          padding: "4px 10px",
+                          borderRadius: 999,
+                        }}
+                      >
+                        SOLD OUT
+                      </span>
+                    )}
+                  </div>
+
+                  <div style={{ padding: 12 }}>
+                    <div
+                      style={{
+                        fontWeight: 900,
+                        color: "#6b245d",
+                        lineHeight: 1.2,
+                        marginBottom: 6,
+                      }}
+                    >
+                      {product.name}
+                    </div>
+
+                    {!product.customOnly && (
+                      <div style={{ color: "#6b245d", fontWeight: 800 }}>
+                        £{product.price.toFixed(2)}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <div style={{ textAlign: "center", marginTop: 24 }}>
+          <a
+            href="/products"
+            style={{
+              display: "inline-block",
+              background: "#6b245d",
+              color: "white",
+              fontWeight: 800,
+              textDecoration: "none",
+              padding: "12px 18px",
+              borderRadius: 10,
+            }}
+          >
+            View all products →
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }

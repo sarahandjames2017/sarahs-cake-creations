@@ -1,134 +1,293 @@
-body {
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
-  background-color: #ffeef5;
-  color: #5e2a6b;
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* optional resets */
+* {
+  box-sizing: border-box;
 }
 
-/* ================= HEADER ================= */
-.site-header {
-  background: #f6f8b8;
-  padding: 30px 15px;
-  border-bottom: 6px solid #ff9abe;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fff6e8;
+  color: #5e2a6b;
+}
+
+/* ===============================
+   SITE LAYOUT
+================================ */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.siteHeader {
+  background: #fff3b0;
+  border-bottom: 4px solid #ff9abe;
+}
+
+.headerRow {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-between;
+  padding: 18px 0;
 }
 
-.site-header img {
-  width: 95px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.site-header h1 {
-  font-size: 40px;
-  margin: 0;
+/* 🔒 LOGO SIZE — HARD LOCK */
+.brandLogo {
+  width: 44px;
+  height: 44px;
+  max-width: 44px;
+  max-height: 44px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-size: 28px;
   font-weight: 900;
   color: #6b245d;
+  margin: 0;
 }
 
-/* ================= NAV ================= */
-.site-nav {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  background: white;
-  padding: 12px 20px;
-  border-bottom: 3px solid #ffd1e6;
-
-  /* ensures nav stays above hero */
-  position: relative;
-  z-index: 1000;
-}
-
-/* Empty spacer (balances login button) */
-.nav-spacer {
-  height: 1px;
-}
-
-/* Centered menu links */
-.site-nav-links {
+.navLinks {
   display: flex;
-  gap: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 18px;
+  font-weight: 700;
 }
 
-.site-nav a {
-  text-decoration: none;
+.navLinks a {
   color: #6b245d;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 6px 12px;
-  transition: 0.25s;
+  text-decoration: none;
 }
 
-.site-nav a:hover {
+.navLinks a:hover {
   color: #ff4d94;
 }
 
-/* ================= LOGIN BUTTON ================= */
-.login-area {
-  display: flex;
-  justify-content: flex-end;
+/* ===============================
+   PRODUCTS GRID — FIXES BIG IMAGES
+================================ */
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
 }
 
-.fb-login-btn {
-  background: #1877f2;
-  color: white;
-  border: none;
-  padding: 7px 14px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  white-space: nowrap;
-
-  position: relative;
-  z-index: 2000;
-  pointer-events: auto;
+.productCard img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
 }
 
-.fb-login-btn:hover {
-  background: #145dbf;
+/* ===============================
+   FOOTER
+================================ */
+
+.siteFooter {
+  background: white;
+  margin-top: 80px;
+  border-top: 1px solid #eee;
 }
 
-/* ================= FOOTER ================= */
-.site-footer {
-  background-color: #ffb5ce;
-  color: #6b245d;
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  padding: 40px 0;
+}
+
+.footerBottom {
   text-align: center;
-  padding: 18px;
-  font-weight: bold;
+  font-size: 12px;
+  color: #777;
+  border-top: 1px solid #eee;
+  padding: 16px 0;
 }
 
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-  .site-header {
-    padding: 15px 10px;
-    gap: 6px;
+/* ===============================
+   FOOTER SOCIAL ICONS (NEW)
+================================ */
+
+.siteFooter a img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.siteFooter a:hover img {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 900px) {
+  .navLinks {
+    display: none;
   }
 
-  .site-header img {
-    width: 65px;
-  }
-
-  .site-header h1 {
-    font-size: 26px;
-  }
-
-  .site-nav-links {
-    gap: 14px;
-  }
-
-  .site-nav a {
-    font-size: 16px;
-    padding: 4px 6px;
-  }
-
-  .fb-login-btn {
-    font-size: 13px;
-    padding: 6px 10px;
+  .footerGrid {
+    grid-template-columns: 1fr;
   }
 }
+
+/* ===============================
+   NAVIGATION — ELEGANT ACTIVE LINK
+================================ */
+
+.navLinks a {
+  position: relative;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+
+.navLinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: #ff4d94;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navLinks a:hover::after {
+  transform: scaleX(0.4);
+}
+
+/* ACTIVE LINK (underline stays) */
+.navLinks a.active::after {
+  transform: scaleX(1);
+}
+
+/* ===============================
+   RESTOCK BAR
+================================ */
+
+.restockBar {
+  background: #ff9abe;
+  color: white;
+  text-align: center;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 8px 12px;
+  letter-spacing: 0.6px;
+}
+
+/* ===============================
+   HEADER ICONS
+================================ */
+
+.headerIcons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headerIcons img {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+/* ===============================
+   MOBILE MENU
+================================ */
+
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6b245d;
+}
+
+.mobileMenu {
+  background: white;
+  border-top: 1px solid #eee;
+}
+
+.mobileMenu a {
+  display: block;
+  padding: 16px 24px;
+  font-weight: 700;
+  color: #6b245d;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .navLinks {
+    display: none;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}
+
+/* ======================================================
+   ✅ NEW — RESPONSIVE HEADER SUPPORT (ADDED ONLY)
+   (matches mobile menu screenshots you showed)
+====================================================== */
+
+.desktopNav {
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+}
+
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .mobileMenuButton {
+    display: block;
+  }
+}
+
+html,
+body {
+  background: #ffffff !important;
+}
+.siteFooter {
+  background: #ffffff;
+}
+
