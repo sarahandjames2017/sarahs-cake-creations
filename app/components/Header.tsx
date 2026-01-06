@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/app/context/CartContext";
 import { supabase } from "@/app/lib/supabase";
+import type { Session } from "@supabase/supabase-js";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -21,15 +22,27 @@ export default function Header() {
   const [activeBadge, setActiveBadge] = useState<string | null>(null);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    const loadUser = async () => {
+      const { data, error } = await supabase.auth.getUser();
+
+      if (error) {
+        setUser(null);
+        return;
+      }
+
       setUser(data.user);
-    });
+    };
+
+    loadUser();
 
     const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
+  data: { subscription },
+} = supabase.auth.onAuthStateChange(
+  (_event: string, session: Session | null) => {
+    setUser(session?.user ?? null);
+  }
+);
+
 
     return () => subscription.unsubscribe();
   }, []);
@@ -70,7 +83,7 @@ export default function Header() {
         <div className="headerIcons">
           <img src="/icons/search.svg" alt="Search" />
 
-          {/* 👤 ACCOUNT ICON (FIXED) */}
+          {/* 👤 ACCOUNT ICON */}
           {user ? (
             <Link href="/account">
               <img
@@ -207,7 +220,11 @@ export default function Header() {
               ✕
             </button>
 
-            <img src={activeBadge} alt="Certificate preview" style={{ maxWidth: "100%", maxHeight: "80vh" }} />
+            <img
+              src={activeBadge}
+              alt="Certificate preview"
+              style={{ maxWidth: "100%", maxHeight: "80vh" }}
+            />
           </div>
         </div>
       )}
