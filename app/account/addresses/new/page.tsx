@@ -8,13 +8,19 @@ export default function NewAddressPage() {
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
-  supabase.auth
-    .getUser()
-    .then((res: { data: { user: { id: string } | null } }) => {
-      setUserId(res.data.user?.id ?? null);
-    });
-}, []);
+    const loadUser = async () => {
+      const { data, error } = await supabase.auth.getUser();
 
+      if (error) {
+        setUserId(null);
+        return;
+      }
+
+      setUserId(data.user?.id ?? null);
+    };
+
+    loadUser();
+  }, []);
 
   if (!userId) return null;
 
